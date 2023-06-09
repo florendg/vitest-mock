@@ -1,0 +1,89 @@
+{
+  "openapi" : "3.1.0",
+  "info" : {
+    "description" : "My service",
+    "title" : "My service",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://api.vultureweb.dev"
+  } ],
+  "paths" : {
+    "/hello" : {
+      "get" : {
+        "description" : "Simple hello endpoint",
+        "operationId" : "hello",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "say-hello" : {
+                    "value" : {
+                      "message" : "Hello world!",
+                      "time" : "2021-01-01T00:00:00Z",
+                      "important" : true
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/Greeting"
+                }
+              }
+            },
+            "description" : "Return a greeting"
+          },
+          "204" : {
+            "description" : "default response"
+          }
+        }
+      }
+    },
+    "/hello/{name}" : {
+      "get" : {
+        "description" : "Say hello to a specific person",
+        "operationId" : "hello-name",
+        "parameters" : [ {
+          "description" : "Name of the persone to greet",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : { },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Greeting"
+                }
+              }
+            },
+            "description" : "Return a greeting"
+          },
+          "204" : {
+            "description" : "default response"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Greeting" : {
+        "properties" : {
+          "message" : { },
+          "time" : {
+            "format" : "date"
+          },
+          "important" : {
+            "default" : true
+          }
+        },
+        "required" : [ "message" ]
+      }
+    }
+  }
+}
