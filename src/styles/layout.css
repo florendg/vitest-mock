@@ -1,0 +1,13 @@
+
+
+app-main {
+    display: grid;
+    min-height: 95vh;
+    grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 2fr 7fr 3fr;
+    gap: 0.5rem
+}

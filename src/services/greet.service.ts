@@ -1,16 +1,23 @@
-async function getHello(): Promise<JSON | string| void> {
+async function getHello(): Promise<JSON> {
     const response = await fetch('http://localhost:8080/api/hello');
     switch (response.status) {
         case 200:
             const result = await response.json();
             return result;
-        case 204:
-            return;
-        case 404:
-            return 'not found';
         default:
-            return 'unknown response status'
+            throw Error('unknown response status');
     }
 }
 
-export {getHello};
+async function getHelloName(name: string): Promise<JSON> {
+    const response = await fetch(`http://localhost:8080/api/hello/${name}`);
+    switch (response.status) {
+        case 200:
+            const result = await response.json();
+            return result;
+        default:
+            throw Error('unknown response status');
+    }
+}
+
+export {getHello, getHelloName};

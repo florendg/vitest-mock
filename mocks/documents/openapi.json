@@ -32,9 +32,6 @@
               }
             },
             "description" : "Return a greeting"
-          },
-          "204" : {
-            "description" : "default response"
           }
         }
       }
@@ -44,7 +41,7 @@
         "description" : "Say hello to a specific person",
         "operationId" : "hello-name",
         "parameters" : [ {
-          "description" : "Name of the persone to greet",
+          "description" : "Name of the person to greet",
           "explode" : false,
           "in" : "path",
           "name" : "name",
@@ -56,6 +53,22 @@
           "200" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "hello-john" : {
+                    "value" : {
+                      "message" : "Hello John Doe",
+                      "time" : "2016-10-25T12:00:00Z",
+                      "important" : false
+                    }
+                  },
+                  "hello-jane" : {
+                    "value" : {
+                      "message" : "Hello Jane Austin",
+                      "time" : "2016-10-25T12:00:00Z",
+                      "important" : true
+                    }
+                  }
+                },
                 "schema" : {
                   "$ref" : "#/components/schemas/Greeting"
                 }
